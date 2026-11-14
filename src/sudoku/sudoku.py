@@ -10,5 +10,5 @@ class Sudoku:
     constraints: frozenset[Constraint]
 
     @property
-    def number_range(self):
-        return set(range(1, self.size + 1))
+    def number_range(self) -> range:
+        return range(1, self.size + 1)
