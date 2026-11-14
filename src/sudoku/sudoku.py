@@ -12,15 +12,6 @@ class Sudoku:
         self._givens: frozendict[tuple[int, int], int] = givens
         self._constraints: frozenset[Constraint] = constraints
 
-    @staticmethod
-    def _is_valid_givens(size: int, entry: tuple[tuple[int, int], int]):
-        (x, y), v = entry
-        return (
-            x in range(1, size + 1)
-            and y in range(1, size + 1)
-            and v in range(1, size + 1)
-        )
-
     @property
     def size(self):
         return self._size
