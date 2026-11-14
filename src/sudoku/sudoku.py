@@ -5,16 +5,16 @@ class Sudoku:
     def __init__(
         self,
         size: int,
-        givens: dict[tuple[int, int], int],
-        constraints: list[Constraint],
+        givens: frozendict[tuple[int, int], int],
+        constraints: frozenset[Constraint],
     ) -> None:
         if not all(self._is_valid_givens(size, entry) for entry in givens.items()):
             raise ValueError(
                 f"All values in argument givens must be in range 1 to {size} (argument size) inclusive"
             )
         self._size: int = size
-        self._givens: dict[tuple[int, int], int] = givens
-        self._constraints: list[Constraint] = constraints
+        self._givens: frozendict[tuple[int, int], int] = givens
+        self._constraints: frozenset[Constraint] = constraints
 
     @staticmethod
     def _is_valid_givens(size: int, entry: tuple[tuple[int, int], int]):
@@ -35,8 +35,8 @@ class Sudoku:
 
     @property
     def givens(self):
-        return self._givens.copy()
+        return self._givens
 
     @property
     def constraints(self):
-        return self._constraints.copy()
+        return self._constraints
