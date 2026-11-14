@@ -8,10 +8,6 @@ class Sudoku:
         givens: frozendict[tuple[int, int], int],
         constraints: frozenset[Constraint],
     ) -> None:
-        if not all(self._is_valid_givens(size, entry) for entry in givens.items()):
-            raise ValueError(
-                f"All values in argument givens must be in range 1 to {size} (argument size) inclusive"
-            )
         self._size: int = size
         self._givens: frozendict[tuple[int, int], int] = givens
         self._constraints: frozenset[Constraint] = constraints
