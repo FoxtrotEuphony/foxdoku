@@ -9,4 +9,4 @@ class ConstraintType(Enum):
 @dataclass(frozen=True)
 class Constraint:
     type: ConstraintType
-    cells: set[tuple[int, int]]
+    cells: frozenset[tuple[int, int]]
