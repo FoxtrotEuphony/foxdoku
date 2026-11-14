@@ -1,6 +1,5 @@
 from dataclasses import dataclass
-
-from .constraints import Constraint
+from enum import Enum, auto
 
 
 @dataclass(frozen=True)
@@ -12,3 +11,13 @@ class Sudoku:
     @property
     def number_range(self) -> range:
         return range(1, self.size + 1)
+
+
+class ConstraintType(Enum):
+    pass
+
+
+@dataclass(frozen=True)
+class Constraint:
+    type: ConstraintType
+    cells: frozenset[tuple[int, int]]
