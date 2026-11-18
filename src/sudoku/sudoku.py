@@ -8,7 +8,7 @@ class ConstraintType(Enum):
 
 @dataclass(frozen=True)
 class Constraint:
-    type: ConstraintType
+    constraint_type: ConstraintType
     cells: frozenset[tuple[int, int]]
 
 
