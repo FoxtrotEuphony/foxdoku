@@ -21,10 +21,24 @@ class Given(Constraint):
         )
 
 
-@dataclass(frozen=True)
 class Sudoku:
-    size: int
-    constraints: frozenset[Constraint]
+    def __init__(self, size: int, constraints: list[Constraint]):
+        if not size > 0:
+            raise ValueError("Size must be positive")
+
+        if not all(c.valid_for_sudoku(self) for c in constraints):
+            raise ValueError("Constraints must be valid for given size")
+
+        self._size = size
+        self._constraints = constraints
+
+    @property
+    def size(self) -> int:
+        return self._size
+
+    @property
+    def constraints(self) -> list[Constraint]:
+        return self._constraints.copy()
 
     @property
     def number_range(self) -> range:
