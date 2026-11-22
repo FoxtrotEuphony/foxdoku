@@ -8,6 +8,10 @@ class Constraint(ABC):
     def valid_for_sudoku(self, sudoku: Sudoku) -> bool:
         raise NotImplementedError
 
+    @abstractmethod
+    def __eq__(self, other: object) -> bool:
+        raise NotImplementedError
+
 
 @dataclass(frozen=True)
 class Given(Constraint):
@@ -15,10 +19,17 @@ class Given(Constraint):
     value: int
 
     @override
-    def valid_for_sudoku(self, sudoku: Sudoku):
+    def valid_for_sudoku(self, sudoku: Sudoku) -> bool:
         return all(
             x in sudoku.number_range for x in (self.cell[0], self.cell[1], self.value)
         )
+
+    @override
+    def __eq__(self, other: object) -> bool:
+        if isinstance(object, Given):
+            return other.cell == self.cell and other.value == self.value  # ty: ignore[missing-attribute]
+        else:
+            return False
 
 
 class Sudoku:
