@@ -1,15 +1,11 @@
+from abc import ABC, abstractmethod
 from dataclasses import dataclass
-from enum import Enum, auto
 
 
-class ConstraintType(Enum):
-    pass
-
-
-@dataclass(frozen=True)
-class Constraint:
-    constraint_type: ConstraintType
-    cells: frozenset[tuple[int, int]]
+class Constraint(ABC):
+    @abstractmethod
+    def __init__(self):
+        pass
 
 
 @dataclass(frozen=True)
