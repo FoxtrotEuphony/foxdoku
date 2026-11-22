@@ -8,10 +8,15 @@ class Constraint(ABC):
         pass
 
 
+class Given(Constraint):
+    def __init__(self, cell: tuple[int, int], value: int):
+        self._cell = cell
+        self._value = value
+
+
 @dataclass(frozen=True)
 class Sudoku:
     size: int
-    givens: frozendict[tuple[int, int], int]
     constraints: frozenset[Constraint]
 
     @property
