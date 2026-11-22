@@ -12,6 +12,10 @@ class Constraint(ABC):
     def __eq__(self, other: object) -> bool:
         raise NotImplementedError
 
+    @abstractmethod
+    def __hash__(self) -> int:
+        raise NotImplementedError
+
 
 @dataclass(frozen=True)
 class Given(Constraint):
@@ -30,6 +34,10 @@ class Given(Constraint):
             return other.cell == self.cell and other.value == self.value  # ty: ignore[missing-attribute]
         else:
             return False
+
+    @override
+    def __hash__(self) -> int:
+        return hash((self.cell, self.value))
 
 
 class Sudoku:
