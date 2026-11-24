@@ -1,7 +1,7 @@
 [project]
 name = "foxdoku"
 version = "0.1.0"
-description = "Add your description here"
+description = "Hobby built sudoku descriptor and solvers"
 readme = "README.md"
 requires-python = ">=3.15"
 dependencies = []
