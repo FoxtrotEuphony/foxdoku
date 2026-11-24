@@ -26,8 +26,8 @@ class Given(Constraint):
 
     @override
     def __eq__(self, other: object) -> bool:
-        if isinstance(object, Given):
-            return other.cell == self.cell and other.value == self.value  # ty: ignore[missing-attribute]
+        if isinstance(other, Given):
+            return other.cell == self.cell and other.value == self.value
         else:
             return False
 
