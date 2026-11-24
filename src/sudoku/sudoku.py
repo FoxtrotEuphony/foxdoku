@@ -1,20 +1,16 @@
-from abc import ABC, abstractmethod
 from dataclasses import dataclass
 from typing import override
 
 
-class Constraint(ABC):
-    @abstractmethod
+class Constraint:
     def valid_for_sudoku(self, sudoku: Sudoku) -> bool:
-        raise NotImplementedError
+        return True
 
-    @abstractmethod
     def __eq__(self, other: object) -> bool:
-        raise NotImplementedError
+        return isinstance(other, type(self))
 
-    @abstractmethod
     def __hash__(self) -> int:
-        raise NotImplementedError
+        return hash(str(type(self)))
 
 
 @dataclass(frozen=True)
