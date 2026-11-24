@@ -55,6 +55,10 @@ class UniqueRegion(Constraint):
         return hash(self.cells)
 
 
+class NumbersInSizeRange(Constraint):
+    pass
+
+
 class Sudoku:
     def __init__(self, size: int, constraints: list[Constraint]):
         if not size > 0:
