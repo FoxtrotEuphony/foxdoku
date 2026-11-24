@@ -40,6 +40,25 @@ class Given(Constraint):
         return hash((self.cell, self.value))
 
 
+@dataclass(frozen=True)
+class UniqueRegion(Constraint):
+    cells: set[tuple[int, int]]
+
+    @override
+    def valid_for_sudoku(self, sudoku: Sudoku) -> bool:
+        return all(
+            x in sudoku.number_range and y in sudoku.number_range for x, y in self.cells
+        )
+
+    @override
+    def __eq__(self, other: object) -> bool:
+        return isinstance(other, UniqueRegion) and self.cells == other.cells
+
+    @override
+    def __hash__(self) -> int:
+        return hash(self.cells)
+
+
 class Sudoku:
     def __init__(self, size: int, constraints: list[Constraint]):
         if not size > 0:
